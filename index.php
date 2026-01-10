@@ -37,7 +37,7 @@ try {
         <div class="container">
             <div class="row align-items-center min-vh-80">
                 <div class="col-lg-6">
-                    <h1 class="hero-title">Connecting Timber Buyers & Marketers in South-West Nigeria</h1>
+                    <h1 class="hero-title">Timber Marketing Information System</h1>
                     <p class="hero-subtitle">Digital marketplace for quality timber species with verified suppliers and comprehensive product information.</p>
                     <div class="hero-buttons">
                         <a href="<?php echo url('marketplace/'); ?>" class="btn btn-primary btn-lg me-3">

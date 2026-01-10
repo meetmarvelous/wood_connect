@@ -28,7 +28,7 @@ include '../includes/header.php';
         Comprehensive information about timber species available.
       </p>
       <div class="row mt-4">
-        <div class="col-md-3">
+        <div class="col-md-6">
           <div class="card bg-success text-white">
             <div class="card-body py-3">
               <h4 class="mb-0"><?php echo count($all_species); ?></h4>
@@ -36,7 +36,7 @@ include '../includes/header.php';
             </div>
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6">
           <div class="card bg-primary text-white">
             <div class="card-body py-3">
               <h4 class="mb-0"><?php echo array_sum(array_column($all_species, 'marketer_count')); ?></h4>
@@ -44,7 +44,7 @@ include '../includes/header.php';
             </div>
           </div>
         </div>
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
           <div class="card bg-warning text-dark">
             <div class="card-body py-3">
               <h4 class="mb-0"><?php echo count(array_filter($all_species, fn($s) => $s['timber_value_rank'] >= 4)); ?></h4>
@@ -59,7 +59,7 @@ include '../includes/header.php';
               <small>Very Durable</small>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

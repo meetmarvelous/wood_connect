@@ -88,25 +88,25 @@ include '../includes/header.php';
 
         <!-- Quick Stats -->
         <div class="row mt-4">
-          <div class="col-md-3">
+          <div class="col-md-4">
             <div class="stat-card">
               <h4 class="text-success mb-1"><?php echo $species['marketer_count']; ?></h4>
               <small class="text-muted">Suppliers</small>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <div class="stat-card">
               <h4 class="text-success mb-1"><?php echo count($available_dimensions); ?></h4>
               <small class="text-muted">Available Sizes</small>
             </div>
           </div>
-          <div class="col-md-3">
+          <!-- <div class="col-md-3">
             <div class="stat-card">
               <h4 class="text-success mb-1"><?php echo str_repeat('★', $species['timber_value_rank']); ?></h4>
               <small class="text-muted">Value Rating</small>
             </div>
-          </div>
-          <div class="col-md-3">
+          </div> -->
+          <div class="col-md-4">
             <div class="stat-card">
               <h4 class="text-success mb-1"><?php echo $species['durability']; ?></h4>
               <small class="text-muted">Durability</small>
@@ -153,13 +153,13 @@ include '../includes/header.php';
                     </td>
                   </tr>
                 <?php endif; ?>
-                <tr>
+                <!-- <tr>
                   <th class="text-muted">Value Rank:</th>
                   <td>
                     <?php echo str_repeat('★', $species['timber_value_rank']); ?>
                     <small class="text-muted ms-2">(<?php echo $species['timber_value_rank']; ?> out of 5)</small>
                   </td>
-                </tr>
+                </tr> -->
               </table>
             </div>
             <div class="col-md-6">

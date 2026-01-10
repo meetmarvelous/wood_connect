@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2025 at 02:47 PM
+-- Generation Time: Jan 10, 2026 at 04:32 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `timber_connect`
+-- Database: `wood_connect`
 --
 
 -- --------------------------------------------------------
@@ -33,7 +33,7 @@ CREATE TABLE `admin_users` (
   `email` varchar(255) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `full_name` varchar(255) NOT NULL,
-  `role` enum('super_admin','admin','moderator') DEFAULT 'admin',
+  `role` enum('super_admin','admin','moderator','marketer') DEFAULT 'admin',
   `is_active` tinyint(1) DEFAULT 1,
   `last_login` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -44,7 +44,38 @@ CREATE TABLE `admin_users` (
 --
 
 INSERT INTO `admin_users` (`id`, `username`, `email`, `password_hash`, `full_name`, `role`, `is_active`, `last_login`, `created_at`) VALUES
-(1, 'admin', 'admin@woodconnect.com.ng', '$2y$10$4Gxnd777ol/UnmW5r5iJEuYeXB9VSajmc1bd3Qr616w6x1dY2GvBa', 'System Administrator', 'super_admin', 1, '2025-10-31 04:06:49', '2025-10-30 15:53:30');
+(1, 'admin', 'admin@woodconnect.com.ng', '$2y$10$4Gxnd777ol/UnmW5r5iJEuYeXB9VSajmc1bd3Qr616w6x1dY2GvBa', 'System Administrator', 'super_admin', 1, '2025-11-19 20:49:04', '2025-10-30 15:53:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `buyers`
+--
+
+CREATE TABLE `buyers` (
+  `id` int(11) NOT NULL,
+  `full_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `company_name` varchar(255) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `city` varchar(100) DEFAULT NULL,
+  `state` varchar(100) DEFAULT NULL,
+  `registration_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_login` timestamp NULL DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT 1,
+  `reset_token` varchar(100) DEFAULT NULL,
+  `reset_expires` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `buyers`
+--
+
+INSERT INTO `buyers` (`id`, `full_name`, `email`, `phone`, `password_hash`, `company_name`, `address`, `city`, `state`, `registration_date`, `last_login`, `is_active`, `reset_token`, `reset_expires`) VALUES
+(1, 'John Timber Buyer', 'username@gmail.com', '08012345678', '$2y$10$ZjfN686dnL8ZNPek9gjmrOJ6jjk5uBEZz14pc9MT8hLUBVpS1./iC', 'Construction Company Ltd', '123 Building Street', 'Lagos', 'Lagos', '2025-11-19 13:11:56', '2025-11-27 09:25:49', 1, NULL, NULL),
+(2, 'Marvelous Adegbiji', 'username2@gmail.com', '08154755551', '$2y$10$aeazBvjnXMeI9cOE71w3nOEE.Tr6Vwc6GQTzic2OcPaMfyMT0KQXa', '', 'Oroki 10', 'username@gmail.com', 'Oyo', '2025-11-19 20:42:59', '2025-11-19 20:43:09', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -377,7 +408,130 @@ INSERT INTO `inventory` (`id`, `marketer_id`, `species_id`, `dimensions`, `price
 (280, 27, 34, '3x8', 4000.00, 500, 'length', 'standard', 'Quality Iya wood available in 3x8 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
 (281, 27, 19, '2x6', 1500.00, 500, 'length', 'standard', 'Quality Ita wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
 (282, 27, 17, '2x2', 900.00, 500, 'length', 'standard', 'Quality Gmelina wood available in 2x2 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
-(283, 27, 4, '1x12', 4500.00, 500, 'length', 'standard', 'Quality Ole wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30');
+(283, 27, 4, '1x12', 4500.00, 500, 'length', 'standard', 'Quality Ole wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(284, 28, 24, '1x12', 4500.00, 200, 'length', 'standard', 'Quality Orin dudu wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(285, 28, 16, '2x2', 950.00, 100, 'length', 'standard', 'Quality Teak wood available in 2x2 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(286, 28, 16, '2x3', 1000.00, 100, 'length', 'standard', 'Quality Teak wood available in 2x3 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(287, 28, 16, '2x4', 1300.00, 100, 'length', 'standard', 'Quality Teak wood available in 2x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(288, 28, 16, '2x6', 2800.00, 150, 'length', 'standard', 'Quality Teak wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(289, 28, 16, '3x4', 3500.00, 150, 'length', 'standard', 'Quality Teak wood available in 3x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(290, 28, 16, '1x12', 7000.00, 200, 'length', 'standard', 'Quality Teak wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(291, 28, 8, '1x12', 3500.00, 250, 'length', 'standard', 'Quality Idigbo wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(292, 28, 17, '1x12', 3000.00, 300, 'length', 'standard', 'Quality Gmelina wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(293, 28, 17, '2x6', 2500.00, 200, 'length', 'standard', 'Quality Gmelina wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(294, 28, 17, '2x4', 1200.00, 200, 'length', 'standard', 'Quality Gmelina wood available in 2x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(295, 28, 17, '2x3', 700.00, 90, 'length', 'standard', 'Quality Gmelina wood available in 2x3 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(296, 28, 17, '1x6', 1300.00, 400, 'length', 'standard', 'Quality Gmelina wood available in 1x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(297, 28, 17, '2x12', 7000.00, 50, 'length', 'standard', 'Quality Gmelina wood available in 2x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(298, 29, 24, '2x4', 1200.00, 100, 'length', 'standard', 'Quality Orin dudu wood available in 2x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(299, 29, 24, '2x3', 1000.00, 80, 'length', 'standard', 'Quality Orin dudu wood available in 2x3 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(300, 29, 24, '2x6', 1500.00, 20, 'length', 'standard', 'Quality Orin dudu wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(301, 29, 24, '1x12', 4000.00, 300, 'length', 'standard', 'Quality Orin dudu wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(302, 29, 17, '2x3', 1000.00, 200, 'length', 'standard', 'Quality Gmelina wood available in 2x3 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(303, 29, 17, '2x6', 2800.00, 100, 'length', 'standard', 'Quality Gmelina wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(304, 29, 16, '2x2', 1000.00, 50, 'length', 'standard', 'Quality Teak wood available in 2x2 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(305, 29, 16, '2x4', 1500.00, 50, 'length', 'standard', 'Quality Teak wood available in 2x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(306, 29, 16, '2x6', 1950.00, 20, 'length', 'standard', 'Quality Teak wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(307, 29, 16, '1x12', 4800.00, 50, 'length', 'standard', 'Quality Teak wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(308, 29, 7, '1x12', 2800.00, 50, 'length', 'standard', 'Quality Araba wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(309, 29, 3, '1x12', 4000.00, 30, 'length', 'standard', 'Quality Ayunre wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30');
+INSERT INTO `inventory` (`id`, `marketer_id`, `species_id`, `dimensions`, `price_per_unit`, `quantity_available`, `unit_type`, `quality_grade`, `description`, `image_path`, `is_available`, `created_at`, `updated_at`) VALUES
+(310, 29, 1, '3x4', 3000.00, 20, 'length', 'standard', 'Quality Iroko wood available in 3x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(311, 29, 1, '1x12', 4500.00, 20, 'length', 'standard', 'Quality Iroko wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(312, 29, 10, '2x12', 2500.00, 20, 'length', 'standard', 'Quality Apepe/Obeche wood available in 2x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(313, 29, 10, '2x6', 2500.00, 20, 'length', 'standard', 'Quality Apepe/Obeche wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(314, 30, 24, '2x4', 1000.00, 40, 'length', 'standard', 'Quality Orin dudu wood available in 2x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(315, 30, 24, '2x4x12', 1500.00, 100, 'length', 'standard', 'Quality Orin dudu wood available in 2x4x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(316, 30, 17, '2x3', 900.00, 70, 'length', 'standard', 'Quality Gmelina wood available in 2x3 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(317, 30, 17, '2x2', 750.00, 100, 'length', 'standard', 'Quality Gmelina wood available in 2x2 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(318, 30, 17, '2x3x12', 1000.00, 2000, 'length', 'standard', 'Quality Gmelina wood available in 2x3x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(319, 30, 16, '2x2', 950.00, 25, 'length', 'standard', 'Quality Teak wood available in 2x2 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(320, 30, 16, '2x3', 1000.00, 100, 'length', 'standard', 'Quality Teak wood available in 2x3 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(321, 30, 16, '2x6', 1400.00, 25, 'length', 'standard', 'Quality Teak wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(322, 30, 16, '2x12', 7000.00, 20, 'length', 'standard', 'Quality Teak wood available in 2x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(323, 30, 7, '1x12x12', 3000.00, 50, 'length', 'standard', 'Quality Araba wood available in 1x12x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(324, 31, 24, '1x12x12', 6000.00, 40, 'length', 'standard', 'Quality Orin dudu wood available in 1x12x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(325, 31, 3, '2x6x12', 3000.00, 1250, 'length', 'standard', 'Quality Ayunre wood available in 2x6x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(326, 31, 10, '2x6x12', 1900.00, 200, 'length', 'standard', 'Quality Arere wood available in 2x6x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(327, 31, 9, '2x6x12', 2200.00, 150, 'length', 'standard', 'Quality Afara wood available in 2x6x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(328, 31, 1, '2x6x12', 3700.00, 105, 'length', 'standard', 'Quality Iroko wood available in 2x6x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(329, 31, 23, '2x6x12', 2200.00, 250, 'length', 'standard', 'Quality Obobo wood available in 2x6x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(330, 31, 21, '2x6x12', 3700.00, 105, 'length', 'standard', 'Quality Mansonia wood available in 2x6x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(331, 31, 20, '2x6x12', 3200.00, 40, 'length', 'standard', 'Quality Omo wood available in 2x6x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(332, 31, 15, '2x6x12', 2700.00, 400, 'length', 'standard', 'Quality Itara wood available in 2x6x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(333, 31, 28, '2x6x12', 1700.00, 1050, 'length', 'standard', 'Quality Eku wood available in 2x6x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(334, 31, 27, '2x6x12', 1700.00, 350, 'length', 'standard', 'Quality Oro wood available in 2x6x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(335, 32, 3, '3x8', 2500.00, 100, 'length', 'standard', 'Quality Ayunre wood available in 3x8 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(336, 32, 3, '2x6', 1500.00, 200, 'length', 'standard', 'Quality Ayunre wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(337, 32, 3, '2x12', 3000.00, 150, 'length', 'standard', 'Quality Ayunre wood available in 2x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(338, 32, 30, '2x6', 2000.00, 100, 'length', 'standard', 'Quality Obi wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(339, 32, 28, '2x2', 800.00, 50, 'length', 'standard', 'Quality Eku wood available in 2x2 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(340, 32, 28, '2x6', 1000.00, 100, 'length', 'standard', 'Quality Eku wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(341, 32, 28, '2x12', 2000.00, 80, 'length', 'standard', 'Quality Eku wood available in 2x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(342, 32, 21, '3x4', 2500.00, 50, 'length', 'standard', 'Quality Mansonia wood available in 3x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(343, 32, 21, '2x6', 2500.00, 80, 'length', 'standard', 'Quality Mansonia wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(344, 32, 21, '2x12', 4500.00, 40, 'length', 'standard', 'Quality Mansonia wood available in 2x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(345, 32, 27, '2x4', 1500.00, 60, 'length', 'standard', 'Quality Oro wood available in 2x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(346, 32, 27, '2x6', 2000.00, 70, 'length', 'standard', 'Quality Oro wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(347, 32, 27, '2x12', 4500.00, 30, 'length', 'standard', 'Quality Oro wood available in 2x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(348, 32, 17, '4x8', 2200.00, 40, 'length', 'standard', 'Quality Gmelina wood available in 4x8 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(349, 32, 17, '2x12', 4400.00, 25, 'length', 'standard', 'Quality Gmelina wood available in 2x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(350, 32, 16, '4x6', 3000.00, 20, 'length', 'standard', 'Quality Teak wood available in 4x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(351, 32, 16, '2x6', 2000.00, 30, 'length', 'standard', 'Quality Teak wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(352, 32, 16, '2x12', 4000.00, 15, 'length', 'standard', 'Quality Teak wood available in 2x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(353, 33, 24, '2x3', 1000.00, 500, 'length', 'standard', 'Quality Orin dudu wood available in 2x3 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(354, 33, 24, '2x4', 1200.00, 500, 'length', 'standard', 'Quality Orin dudu wood available in 2x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(355, 33, 24, '2x6', 1700.00, 500, 'length', 'standard', 'Quality Orin dudu wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(356, 33, 17, '2x2', 950.00, 700, 'length', 'standard', 'Quality Gmelina wood available in 2x2 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(357, 33, 17, '2x3', 1000.00, 700, 'length', 'standard', 'Quality Gmelina wood available in 2x3 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(358, 33, 17, '2x6', 1700.00, 400, 'length', 'standard', 'Quality Gmelina wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(359, 33, 6, '2x6', 2500.00, 500, 'length', 'standard', 'Quality Apepe wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(360, 33, 3, '1x12', 3000.00, 40, 'length', 'standard', 'Quality Albizia wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(361, 33, 29, '1x12', 3500.00, 30, 'length', 'standard', 'Quality Giant coal wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(364, 34, 24, '2x2', 1000.00, 100, 'length', 'standard', 'Quality Orin dudu wood available in 2x2 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(365, 34, 24, '2x3', 900.00, 60, 'length', 'standard', 'Quality Orin dudu wood available in 2x3 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(366, 34, 24, '2x4', 1000.00, 60, 'length', 'standard', 'Quality Orin dudu wood available in 2x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(367, 34, 24, '2x6', 1700.00, 500, 'length', 'standard', 'Quality Orin dudu wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(368, 34, 17, '2x2', 950.00, 220, 'length', 'standard', 'Quality Gmelina wood available in 2x2 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(369, 34, 17, '2x3', 1200.00, 700, 'length', 'standard', 'Quality Gmelina wood available in 2x3 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(370, 34, 17, '2x4', 1500.00, 700, 'length', 'standard', 'Quality Gmelina wood available in 2x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(371, 34, 17, '2x6', 2500.00, 400, 'length', 'standard', 'Quality Gmelina wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(372, 34, 17, '3x4', 2500.00, 600, 'length', 'standard', 'Quality Gmelina wood available in 3x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(373, 34, 17, '1x12', 5000.00, 300, 'length', 'standard', 'Quality Gmelina wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(374, 34, 17, '4x4', 5000.00, 400, 'length', 'standard', 'Quality Gmelina wood available in 4x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(375, 34, 7, '1x12', 3000.00, 50, 'length', 'standard', 'Quality Araba wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(376, 34, 7, '2x3', 800.00, 50, 'length', 'standard', 'Quality Araba wood available in 2x3 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(377, 34, 7, '2x4', 900.00, 50, 'length', 'standard', 'Quality Araba wood available in 2x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(378, 34, 38, '2x6', 1000.00, 50, 'length', 'standard', 'Quality False Iroko wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(379, 35, 24, '2x4', 1000.00, 100, 'length', 'standard', 'Quality Orin dudu/Ayin wood available in 2x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(380, 35, 3, '1x12', 3000.00, 50, 'length', 'standard', 'Quality Ayunre wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(381, 35, 13, '2x6', 2500.00, 100, 'length', 'standard', 'Quality Apa wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(382, 35, 33, '1x12', 2700.00, 100, 'length', 'standard', 'Quality Iya wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(383, 35, 17, '2x12', 7000.00, 50, 'length', 'standard', 'Quality Ejirin wood available in 2x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(384, 35, 8, '1x12', 4500.00, 100, 'length', 'standard', 'Quality Idigbo wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(385, 35, 17, '2x3', 1000.00, 80, 'length', 'standard', 'Quality Gmelina wood available in 2x3 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(386, 35, 17, '1x12', 4500.00, 100, 'length', 'standard', 'Quality Gmelina wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(387, 35, 16, '2x6', 1350.00, 100, 'length', 'standard', 'Quality Teak wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(388, 35, 39, '3x4', 2000.00, 100, 'length', 'standard', 'Quality Obo wood available in 3x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(389, 35, 26, '1x12', 3200.00, 50, 'length', 'standard', 'Quality Irugba wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(390, 35, 10, '2x12', 2500.00, 20, 'length', 'standard', 'Quality Apepe/Obeche wood available in 2x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(391, 36, 24, '2x4', 1000.00, 40, 'length', 'standard', 'Quality Orin dudu/Ayin wood available in 2x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(392, 36, 17, '2x3', 900.00, 70, 'length', 'standard', 'Quality Gmelina wood available in 2x3 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(393, 36, 17, '2x4', 750.00, 100, 'length', 'standard', 'Quality Gmelina wood available in 2x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(394, 36, 16, '2x4', 1400.00, 25, 'length', 'standard', 'Quality Teak wood available in 2x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(395, 36, 16, '2x6', 1400.00, 25, 'length', 'standard', 'Quality Teak wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(396, 36, 13, '3x4', 2000.00, 30, 'length', 'standard', 'Quality Apa wood available in 3x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(397, 36, 10, '1x12', 2500.00, 20, 'length', 'standard', 'Quality Apepe/Obeche wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(398, 36, 7, '2x12', 3000.00, 15, 'length', 'standard', 'Quality Araba wood available in 2x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(399, 36, 3, '3x8', 2500.00, 20, 'length', 'standard', 'Quality Ayunre wood available in 3x8 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(400, 36, 40, '3x6', 2000.00, 10, 'length', 'standard', 'Quality Dongoyaro wood available in 3x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(401, 36, 9, '4x4', 3000.00, 15, 'length', 'standard', 'Quality Afara wood available in 4x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(402, 36, 41, '2x3', 900.00, 70, 'length', 'standard', 'Quality Black tree wood available in 2x3 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(403, 36, 41, '2x4', 1000.00, 40, 'length', 'standard', 'Quality Black tree wood available in 2x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(404, 36, 41, '3x4', 200.00, 75, 'length', 'standard', 'Quality Black tree wood available in 3x4 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(405, 36, 41, '1x12', 5000.00, 100, 'length', 'standard', 'Quality Black tree wood available in 1x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(406, 36, 41, '2x6', 1300.00, 55, 'length', 'standard', 'Quality Black tree wood available in 2x6 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(407, 36, 41, '2x12', 750.00, 40, 'length', 'standard', 'Quality Black tree wood available in 2x12 dimensions', NULL, 1, '2025-10-30 15:53:30', '2025-10-30 15:53:30');
 
 -- --------------------------------------------------------
 
@@ -412,7 +566,7 @@ CREATE TABLE `marketers` (
 --
 
 INSERT INTO `marketers` (`id`, `business_name`, `owner_name`, `address`, `city`, `state`, `local_government`, `phone`, `email`, `password_hash`, `business_description`, `verification_status`, `verification_notes`, `profile_image`, `registration_date`, `last_login`, `is_active`, `reset_token`, `reset_expires`) VALUES
-(1, 'Orisun Ayo Planks Shield', 'Proprietor', 'Adjacent Okiki Jesu filling Station, Oda-road, Akure Ondo State', 'Akure', 'Ondo', 'Akure South', '08034227144', 'orisunayo@woodconnect.com.ng', '$2y$10$VW6ovsbOg4qmzKd9ESy10eY9eNq01OA7RzBJpIrya.ofHMg.6g.ui', NULL, 'verified', NULL, NULL, '2025-10-30 15:53:29', '2025-10-31 04:12:50', 1, NULL, NULL),
+(1, 'Orisun Ayo Planks Shield', 'Proprietor', 'Adjacent Okiki Jesu filling Station, Oda-road, Akure Ondo State', 'Akure', 'Ondo', 'Akure South', '08034227144', 'orisunayo@woodconnect.com.ng', '$2y$10$VW6ovsbOg4qmzKd9ESy10eY9eNq01OA7RzBJpIrya.ofHMg.6g.ui', NULL, 'verified', NULL, NULL, '2025-10-30 15:53:29', '2025-11-19 13:47:22', 1, NULL, NULL),
 (2, 'Asejere (Adelanke) Plank Seller Shield', 'Proprietor', 'Road block Ibadan-road, Akure South local Government, Ondo State', 'Akure', 'Ondo', 'Akure South', '07025685033', 'asejere@woodconnect.com.ng', '$2y$10$VW6ovsbOg4qmzKd9ESy10eY9eNq01OA7RzBJpIrya.ofHMg.6g.ui', NULL, 'verified', NULL, NULL, '2025-10-30 15:53:29', NULL, 1, NULL, NULL),
 (3, 'Love and Peace Plank Market', 'Proprietor', 'Ayeni 2, custom Ondo-road, Akure South local Government Ondo State', 'Akure', 'Ondo', 'Akure South', '08101133721', 'lovepeace@woodconnect.com.ng', '$2y$10$VW6ovsbOg4qmzKd9ESy10eY9eNq01OA7RzBJpIrya.ofHMg.6g.ui', NULL, 'verified', NULL, NULL, '2025-10-30 15:53:29', NULL, 1, NULL, NULL),
 (4, 'WeliWeli / Anu Oluwapo Plank Marketer', 'Proprietor', 'Oda road Power line, Akure South local Government, Akure Ondo State', 'Akure', 'Ondo', 'Akure South', '08107215335', 'weliweli@woodconnect.com.ng', '$2y$10$VW6ovsbOg4qmzKd9ESy10eY9eNq01OA7RzBJpIrya.ofHMg.6g.ui', NULL, 'verified', NULL, NULL, '2025-10-30 15:53:29', NULL, 1, NULL, NULL),
@@ -438,7 +592,16 @@ INSERT INTO `marketers` (`id`, `business_name`, `owner_name`, `address`, `city`,
 (24, 'Oga Owokunle Jomaicha Planks Seller', 'Oga Owokunle', 'Ibuaje Plank Market, Osogbo, Osun State', 'Osogbo', 'Osun', 'Osogbo', '08069477877', 'owokunle@woodconnect.com.ng', NULL, NULL, 'verified', NULL, NULL, '2025-10-30 15:53:29', NULL, 1, NULL, NULL),
 (25, 'Alaga Jomaicha Planks Seller', 'Proprietor', 'Ibuaje Plank Market, Oke ayepe, Osogbo, Osun State', 'Osogbo', 'Osun', 'Osogbo', '08065385021', 'jomaicha@woodconnect.com.ng', NULL, NULL, 'verified', NULL, NULL, '2025-10-30 15:53:29', NULL, 1, NULL, NULL),
 (26, 'Baba Adeyemo Alekuwodo Planks Market', 'Baba Adeyemo', 'Akorede Plank Market, Egbedore local Government, Osogbo, Osun State', 'Osogbo', 'Osun', 'Egbedore', '08034960040', 'adeyemo@timber.com', NULL, NULL, 'verified', NULL, NULL, '2025-10-30 15:53:29', NULL, 1, NULL, NULL),
-(27, 'Ogbeni Oke Planks Seller', 'Ogbeni Oke', 'Ibuaje Sawnswery Association Plank Market, Osogbo Local Govt, Osogbo Osun State', 'Osogbo', 'Osun', 'Osogbo', '08038205470', 'ogbeni@timber.com', NULL, NULL, 'verified', NULL, NULL, '2025-10-30 15:53:29', NULL, 1, NULL, NULL);
+(27, 'Ogbeni Oke Planks Seller', 'Ogbeni Oke', 'Ibuaje Sawnswery Association Plank Market, Osogbo Local Govt, Osogbo Osun State', 'Osogbo', 'Osun', 'Osogbo', '08038205470', 'ogbeni@timber.com', NULL, NULL, 'verified', NULL, NULL, '2025-10-30 15:53:29', NULL, 1, NULL, NULL),
+(28, 'Comrades Rubil Adeyombo and Semiu Adekunle Makinde Planks Seller', 'Comrades Rubil Adeyombo and Semiu Adekunle Makinde', 'Lafenwa Planks Market, Abeokuta, Abeokuta North, Ogun State', 'Abeokuta', 'Ogun', 'Abeokuta North', '08033637789', 'comradesrubil@woodconnect.com.ng', '$2y$10$VW6ovsbOg4qmzKd9ESy10eY9eNq01OA7RzBJpIrya.ofHMg.6g.ui', NULL, 'verified', NULL, NULL, '2025-10-30 15:53:30', NULL, 1, NULL, NULL),
+(29, 'Gani Akanni Sobowale and Nimota T. Yusuff Timber Sheds', 'Gani Akanni Sobowale and Nimota T. Yusuff', 'Lafenwa Planks Market, Abeokuta, Abeokuta North, Ogun State', 'Abeokuta', 'Ogun', 'Abeokuta North', '08133540858', 'ganiakanni@woodconnect.com.ng', '$2y$10$VW6ovsbOg4qmzKd9ESy10eY9eNq01OA7RzBJpIrya.ofHMg.6g.ui', NULL, 'verified', NULL, NULL, '2025-10-30 15:53:30', NULL, 1, NULL, NULL),
+(30, 'Mr Bamidele Samsondeen Planks Vendor', 'Mr Bamidele Samsondeen', 'Lafenwa Planks Market, Abeokuta, Abeokuta North, Ogun State', 'Abeokuta', 'Ogun', 'Abeokuta North', '08066382211', 'bamidele@woodconnect.com.ng', '$2y$10$VW6ovsbOg4qmzKd9ESy10eY9eNq01OA7RzBJpIrya.ofHMg.6g.ui', NULL, 'verified', NULL, NULL, '2025-10-30 15:53:30', NULL, 1, NULL, NULL),
+(31, 'Robiu Ramon Planks Seller', 'Robiu Ramon', 'Lafenwa Planks Market, Abeokuta, Abeokuta North, Ogun State', 'Abeokuta', 'Ogun', 'Abeokuta North', '08062163964', 'robiuramon@woodconnect.com.ng', '$2y$10$VW6ovsbOg4qmzKd9ESy10eY9eNq01OA7RzBJpIrya.ofHMg.6g.ui', NULL, 'verified', NULL, NULL, '2025-10-30 15:53:30', NULL, 1, NULL, NULL),
+(32, 'Odeda Planks Market Seller', 'Proprietor', 'Ibadan road, Odeda Planks market, Odeda Local Government, Ogun State', 'Abeokuta', 'Ogun', 'Odeda', '08062163965', 'odedamarket@woodconnect.com.ng', '$2y$10$VW6ovsbOg4qmzKd9ESy10eY9eNq01OA7RzBJpIrya.ofHMg.6g.ui', NULL, 'verified', NULL, NULL, '2025-10-30 15:53:30', NULL, 1, NULL, NULL),
+(33, 'F.O Adebayo Sawmill/Plank Seller', 'F.O Adebayo', 'Halleluyah Planks market Obafemi Owode, Abeokuta South, Ogun State', 'Abeokuta', 'Ogun', 'Abeokuta South', '08062163966', 'fodebayo@woodconnect.com.ng', '$2y$10$VW6ovsbOg4qmzKd9ESy10eY9eNq01OA7RzBJpIrya.ofHMg.6g.ui', NULL, 'verified', NULL, NULL, '2025-10-30 15:53:30', NULL, 1, NULL, NULL),
+(34, 'Sikuola Kehinde Planks Selling Market', 'Sikuola Kehinde', 'Lafenwa Planks market, Abeokuta North, Ogun State', 'Abeokuta', 'Ogun', 'Abeokuta North', '08062163967', 'sikuola@woodconnect.com.ng', '$2y$10$VW6ovsbOg4qmzKd9ESy10eY9eNq01OA7RzBJpIrya.ofHMg.6g.ui', NULL, 'verified', NULL, NULL, '2025-10-30 15:53:30', NULL, 1, NULL, NULL),
+(35, 'Adeyinka Saheed Taiwo Plank Selling Hub', 'Adeyinka Saheed Taiwo', 'Lafenwa Planks Market, Abeokuta, Abeokuta North, Ogun State', 'Abeokuta', 'Ogun', 'Abeokuta North', '08024098951', 'adeyinka@woodconnect.com.ng', '$2y$10$VW6ovsbOg4qmzKd9ESy10eY9eNq01OA7RzBJpIrya.ofHMg.6g.ui', NULL, 'verified', NULL, NULL, '2025-10-30 15:53:30', NULL, 1, NULL, NULL),
+(36, 'Mr Bakare Saheed Akinkunmi Planks', 'Mr Bakare Saheed Akinkunmi', 'Lafenwa Planks Market, Abeokuta, Abeokuta North, Ogun State', 'Abeokuta', 'Ogun', 'Abeokuta North', '07033882212', 'bakare@woodconnect.com.ng', '$2y$10$VW6ovsbOg4qmzKd9ESy10eY9eNq01OA7RzBJpIrya.ofHMg.6g.ui', NULL, 'verified', NULL, NULL, '2025-10-30 15:53:30', NULL, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -463,7 +626,7 @@ CREATE TABLE `platform_stats` (
 --
 
 INSERT INTO `platform_stats` (`id`, `total_marketers`, `verified_marketers`, `total_species`, `active_listings`, `total_inquiries`, `completed_inquiries`, `stat_date`, `created_at`) VALUES
-(1, 27, 27, 37, 283, 0, 0, '2025-10-30', '2025-10-30 15:53:30');
+(1, 36, 36, 41, 407, 0, 0, '2025-10-30', '2025-10-30 15:53:30');
 
 -- --------------------------------------------------------
 
@@ -516,10 +679,10 @@ INSERT INTO `species` (`id`, `scientific_name`, `common_names`, `family`, `densi
 (23, 'Guarea thompsonii', '[\"Obobo\", \"Black Guarea\"]', 'Meliaceae', '580-680 kg/m³', 'Durable', 2, '[\"Furniture\", \"Cabinetry\"]', 'Good quality timber for interior work.', NULL, '2025-10-30 15:53:29', '2025-10-30 15:53:29'),
 (24, 'Anogeissus leiocarpus', '[\"Ayin\", \"Orin dudu\"]', 'Combretaceae', '900-1000 kg/m³', 'Very Durable', 1, '[\"Heavy Construction\", \"Tool Handles\"]', 'Extremely hard and durable wood.', NULL, '2025-10-30 15:53:29', '2025-10-30 15:53:29'),
 (25, 'Ficus exasperata', '[\"Ipin\"]', 'Moraceae', '450-550 kg/m³', 'Perishable', 4, '[\"Plywood\", \"Packaging\"]', 'Lightweight wood for temporary uses.', NULL, '2025-10-30 15:53:29', '2025-10-30 15:53:29'),
-(26, 'Parkia biglobosa', '[\"African locust bean\"]', 'Fabaceae', '700-800 kg/m³', 'Durable', 2, '[\"Construction\", \"Furniture\"]', 'Durable timber from the locust bean tree.', NULL, '2025-10-30 15:53:29', '2025-10-30 15:53:29'),
+(26, 'Parkia biglobosa', '[\"African locust bean\", \"Irugba\"]', 'Fabaceae', '700-800 kg/m³', 'Durable', 2, '[\"Construction\", \"Furniture\"]', 'Durable timber from the locust bean tree.', NULL, '2025-10-30 15:53:29', '2025-10-30 15:53:29'),
 (27, 'Irvingia gabonensis', '[\"Oro\", \"Bush mango\"]', 'Irvingiaceae', '750-850 kg/m³', 'Durable', 2, '[\"Construction\", \"Furniture\"]', 'Hardwood from the bush mango tree.', NULL, '2025-10-30 15:53:29', '2025-10-30 15:53:29'),
 (28, 'Brachystegia spp', '[\"Eku\"]', 'Fabaceae', '680-780 kg/m³', 'Durable', 2, '[\"Construction\", \"Flooring\"]', 'Durable African hardwood.', NULL, '2025-10-30 15:53:29', '2025-10-30 15:53:29'),
-(29, 'Cola gigantea', '[\"Ogbus\"]', 'Malvaceae', '600-700 kg/m³', 'Moderately Durable', 3, '[\"Furniture\", \"Construction\"]', 'Medium-weight timber.', NULL, '2025-10-30 15:53:29', '2025-10-30 15:53:29'),
+(29, 'Cola gigantea', '[\"Ogbus\", \"Giant coal\"]', 'Malvaceae', '600-700 kg/m³', 'Moderately Durable', 3, '[\"Furniture\", \"Construction\"]', 'Medium-weight timber.', NULL, '2025-10-30 15:53:29', '2025-10-30 15:53:29'),
 (30, 'Cola nitida', '[\"Obi\", \"Kola\"]', 'Malvaceae', '580-680 kg/m³', 'Moderately Durable', 3, '[\"Furniture\", \"Construction\"]', 'Timber from kola nut tree.', NULL, '2025-10-30 15:53:29', '2025-10-30 15:53:29'),
 (31, 'Uapaca guineensis', '[\"Akun\"]', 'Phyllanthaceae', '750-850 kg/m³', 'Durable', 2, '[\"Construction\", \"Tool Handles\"]', 'Durable African hardwood.', NULL, '2025-10-30 15:53:29', '2025-10-30 15:53:29'),
 (32, 'Spondias mombin', '[\"Iyeye\", \"Yellow mombin\"]', 'Anacardiaceae', '520-620 kg/m³', 'Moderately Durable', 3, '[\"Furniture\", \"Construction\"]', 'Medium-weight fruit tree timber.', NULL, '2025-10-30 15:53:29', '2025-10-30 15:53:29'),
@@ -527,7 +690,11 @@ INSERT INTO `species` (`id`, `scientific_name`, `common_names`, `family`, `densi
 (34, 'Entandrophragma cylindricum', '[\"Okogbo\", \"Sapele\"]', 'Meliaceae', '620-720 kg/m³', 'Durable', 2, '[\"Furniture\", \"Veneer\"]', 'High-quality furniture timber.', NULL, '2025-10-30 15:53:29', '2025-10-30 15:53:29'),
 (35, 'Lovoa trichilioides', '[\"Koko igbo\", \"African walnut\"]', 'Meliaceae', '520-620 kg/m³', 'Durable', 2, '[\"Furniture\", \"Cabinetry\"]', 'Beautiful wood for fine furniture.', NULL, '2025-10-30 15:53:29', '2025-10-30 15:53:29'),
 (36, 'Lophira alata', '[\"Ekki\"]', 'Ochnaceae', '1050-1150 kg/m³', 'Extremely Durable', 1, '[\"Heavy Construction\", \"Marine Work\", \"Bridges\"]', 'Extremely dense and durable wood, resistant to termites.', NULL, '2025-10-30 15:53:29', '2025-10-30 15:53:29'),
-(37, 'Casia fistula', '[\"Casia\"]', 'Fabaceae', '700-800 kg/m³', 'Durable', 2, '[\"Furniture\", \"Construction\"]', 'Durable timber with good workability.', NULL, '2025-10-30 15:53:29', '2025-10-30 15:53:29');
+(37, 'Casia fistula', '[\"Casia\"]', 'Fabaceae', '700-800 kg/m³', 'Durable', 2, '[\"Furniture\", \"Construction\"]', 'Durable timber with good workability.', NULL, '2025-10-30 15:53:29', '2025-10-30 15:53:29'),
+(38, 'Antiaris africana', '[\"False Iroko\"]', 'Moraceae', '450-550 kg/m³', 'Moderately Durable', 3, '[\"Plywood\", \"Packaging\"]', 'Lightweight wood resembling Iroko.', NULL, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(39, 'Erythrophleum suaveolens', '[\"Obo\"]', 'Fabaceae', '850-950 kg/m³', 'Very Durable', 1, '[\"Heavy Construction\", \"Bridges\"]', 'Extremely durable and heavy wood.', NULL, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(40, 'Azadirachta indica', '[\"Dongoyaro\", \"Neem\"]', 'Meliaceae', '650-750 kg/m³', 'Durable', 2, '[\"Furniture\", \"Construction\"]', 'Durable timber with medicinal properties.', NULL, '2025-10-30 15:53:30', '2025-10-30 15:53:30'),
+(41, 'Diospyros crassiflora', '[\"Black tree\", \"Gaboon ebony\"]', 'Ebenaceae', '950-1050 kg/m³', 'Extremely Durable', 1, '[\"Furniture\", \"Carving\", \"Musical Instruments\"]', 'Extremely dense and valuable ebony wood.', NULL, '2025-10-30 15:53:30', '2025-10-30 15:53:30');
 
 --
 -- Indexes for dumped tables
@@ -540,6 +707,15 @@ ALTER TABLE `admin_users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`),
   ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `buyers`
+--
+ALTER TABLE `buyers`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `idx_email` (`email`),
+  ADD KEY `idx_phone` (`phone`);
 
 --
 -- Indexes for table `inquiries`
@@ -598,6 +774,12 @@ ALTER TABLE `admin_users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `buyers`
+--
+ALTER TABLE `buyers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `inquiries`
 --
 ALTER TABLE `inquiries`
@@ -607,13 +789,13 @@ ALTER TABLE `inquiries`
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=284;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=408;
 
 --
 -- AUTO_INCREMENT for table `marketers`
 --
 ALTER TABLE `marketers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `platform_stats`
@@ -625,7 +807,7 @@ ALTER TABLE `platform_stats`
 -- AUTO_INCREMENT for table `species`
 --
 ALTER TABLE `species`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Constraints for dumped tables
