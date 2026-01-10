@@ -1,0 +1,26 @@
+We want to make a little adjustment
+
+We want to take buyers/users details.
+Taking key informations like email, phone number, name, etc for buyer registration
+
+
+
+Thats all, which means we will be a new user table.
+
+edit the login page
+It should be 
+I am :
+Buyer (or use the right word) & Timber marketer (The timber marketer section should work for the admin too when the correct email and password is enterd)
+
+Edit the register.php to be able to register as a buyer or marketer .
+
+No buyer dashboard only .
+Here are the list of what buyers can do.
+- Login and register (optional)
+- The welcome (user) section at the header should display at the top after buyer login too.
+- And when the buyer want to fill form, like the (Send inquiry to marketer) , it should fetch the user from session that was set during login. Thats all
+
+Lets start with the simple sql code to add to the database, then I will tell u to proceed with the code adjustment
+
+http://localhost/timber-connect/dashboard/marketer/
+

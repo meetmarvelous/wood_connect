@@ -1,0 +1,17 @@
+We want to make overall adjustments.
+
+(More like Jiji marketplace structure) 
+
+We want to take buyers/users details. 
+Taking key informations like email, phone number, name, etc
+
+List of what user buyers can do.
+Login and register (optional)
+
+Benefit of registered users/buyers. 
+Send a message to marketers, and get replies on the platform or via their email.
+
+That means we will make a little adjustments to the sql database itself and some codes of the web app. 
+
+Now give me the complete and updated code of the app, bit by bit. Don't make any mistakes or forget anything . Think and take your time as much as possible if needed
+
