@@ -70,7 +70,7 @@ try {
             `email` varchar(255) DEFAULT NULL,
             `password_hash` varchar(255) DEFAULT NULL,
             `business_description` text DEFAULT NULL,
-            `verification_status` enum('pending','verified','rejected') DEFAULT 'verified',
+            `verification_status` enum('pending','verified','rejected') DEFAULT 'pending',
             `verification_notes` text DEFAULT NULL,
             `profile_image` varchar(500) DEFAULT NULL,
             `registration_date` timestamp NOT NULL DEFAULT current_timestamp(),
