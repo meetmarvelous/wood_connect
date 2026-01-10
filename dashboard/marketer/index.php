@@ -57,14 +57,26 @@ include '../../includes/header.php';
         <div class="col-lg-9">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2>Business Dashboard</h2>
+                <?php if ($_SESSION['marketer_verified']): ?>
                 <div class="d-flex gap-2">
                     <a href="inventory.php?action=add" class="btn btn-primary">
                         <i class="fas fa-plus me-1"></i>Add New Listing
                     </a>
                 </div>
+                <?php endif; ?>
             </div>
 
             <!-- Verification Status Alert -->
+            <?php if (isset($_GET['verification_pending'])): ?>
+                <div class="alert alert-danger d-flex align-items-center">
+                    <i class="fas fa-exclamation-triangle fa-2x me-3"></i>
+                    <div>
+                        <h5 class="mb-1">Action Blocked - Verification Required</h5>
+                        <p class="mb-0">You must be verified before you can add inventory. Please wait for admin approval.</p>
+                    </div>
+                </div>
+            <?php endif; ?>
+            
             <?php if ($_SESSION['marketer_verified']): ?>
                 <div class="alert alert-success d-flex align-items-center">
                     <i class="fas fa-check-circle fa-2x me-3"></i>
@@ -78,7 +90,7 @@ include '../../includes/header.php';
                     <i class="fas fa-clock fa-2x me-3"></i>
                     <div>
                         <h5 class="mb-1">Verification Pending</h5>
-                        <p class="mb-0">Your account is under review. You can add inventory, but it won't be visible to buyers until verified.</p>
+                        <p class="mb-0">Your account is under review. You will be able to add products once an admin verifies your business. This usually takes 24-48 hours.</p>
                     </div>
                 </div>
             <?php endif; ?>

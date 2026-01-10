@@ -40,39 +40,7 @@ $pending_marketers = $pending_stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="row">
             <!-- Sidebar -->
             <div class="col-lg-3">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title text-success">
-                            <i class="fas fa-cog me-2"></i>Admin Panel
-                        </h5>
-                        <div class="list-group list-group-flush">
-                            <a href="<?php echo url('dashboard/'); ?>" class="list-group-item list-group-item-action active">
-                                <i class="fas fa-tachometer-alt me-2"></i>Dashboard
-                            </a>
-                            <a href="<?php echo url('dashboard/marketers.php'); ?>" class="list-group-item list-group-item-action">
-                                <i class="fas fa-users me-2"></i>Manage Marketers
-                                <?php if ($stats['pending_marketers'] > 0): ?>
-                                    <span class="badge bg-warning float-end"><?php echo $stats['pending_marketers']; ?></span>
-                                <?php endif; ?>
-                            </a>
-                            <a href="<?php echo url('dashboard/species.php'); ?>" class="list-group-item list-group-item-action">
-                                <i class="fas fa-tree me-2"></i>Timber Species
-                            </a>
-                            <a href="<?php echo url('dashboard/inquiries.php'); ?>" class="list-group-item list-group-item-action">
-                                <i class="fas fa-envelope me-2"></i>Customer Inquiries
-                                <?php if ($stats['pending_inquiries'] > 0): ?>
-                                    <span class="badge bg-warning float-end"><?php echo $stats['pending_inquiries']; ?></span>
-                                <?php endif; ?>
-                            </a>
-                            <a href="<?php echo url('dashboard/reports.php'); ?>" class="list-group-item list-group-item-action">
-                                <i class="fas fa-chart-bar me-2"></i>Reports & Analytics
-                            </a>
-                            <a href="<?php echo url('dashboard/settings.php'); ?>" class="list-group-item list-group-item-action">
-                                <i class="fas fa-sliders-h me-2"></i>System Settings
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <?php include '../includes/admin-sidebar.php'; ?>
             </div>
 
             <!-- Main Content -->

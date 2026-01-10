@@ -33,6 +33,47 @@ $inventory_stmt = $pdo->prepare("
 ");
 $inventory_stmt->execute([$marketer_id]);
 $inventory_items = $inventory_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Get last product upload time
+$last_upload_stmt = $pdo->prepare("
+    SELECT MAX(created_at) as last_upload
+    FROM inventory
+    WHERE marketer_id = ?
+");
+$last_upload_stmt->execute([$marketer_id]);
+$last_upload_result = $last_upload_stmt->fetch(PDO::FETCH_ASSOC);
+$last_upload = $last_upload_result['last_upload'] ?? null;
+
+// Helper function to format time ago
+function timeAgo($datetime) {
+    if (!$datetime) return 'No uploads yet';
+    
+    $time = strtotime($datetime);
+    $now = time();
+    $diff = $now - $time;
+    
+    if ($diff < 60) {
+        return 'Just now';
+    } elseif ($diff < 3600) {
+        $mins = floor($diff / 60);
+        return $mins . ' minute' . ($mins > 1 ? 's' : '') . ' ago';
+    } elseif ($diff < 86400) {
+        $hours = floor($diff / 3600);
+        return $hours . ' hour' . ($hours > 1 ? 's' : '') . ' ago';
+    } elseif ($diff < 604800) {
+        $days = floor($diff / 86400);
+        return $days . ' day' . ($days > 1 ? 's' : '') . ' ago';
+    } elseif ($diff < 2592000) {
+        $weeks = floor($diff / 604800);
+        return $weeks . ' week' . ($weeks > 1 ? 's' : '') . ' ago';
+    } elseif ($diff < 31536000) {
+        $months = floor($diff / 2592000);
+        return $months . ' month' . ($months > 1 ? 's' : '') . ' ago';
+    } else {
+        $years = floor($diff / 31536000);
+        return $years . ' year' . ($years > 1 ? 's' : '') . ' ago';
+    }
+}
 $page_title = $marketer['business_name'] . " - WOOD CONNECT";
 include '../includes/header.php';
 ?>
@@ -92,6 +133,18 @@ include '../includes/header.php';
                   <?php echo date('Y') - date('Y', strtotime($marketer['registration_date'])); ?>+
                 </h4>
                 <small class="text-muted">Years Experience</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-12">
+              <div class="stat p-3 bg-light rounded">
+                <small class="text-muted d-block mb-1"><i class="fas fa-upload me-1"></i>Last Product Upload</small>
+                <span class="fw-semibold text-success"><?php echo timeAgo($last_upload); ?></span>
+                <?php if ($last_upload): ?>
+                  <small class="text-muted d-block mt-1"><?php echo date('F j, Y \a\t g:i A', strtotime($last_upload)); ?></small>
+                <?php endif; ?>
               </div>
             </div>
           </div>

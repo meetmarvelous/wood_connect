@@ -1,6 +1,6 @@
 <?php
 require_once '../../includes/config.php';
-$auth->requireMarketer();
+$auth->requireVerifiedMarketer();
 
 $page_title = "Manage Inventory - WOOD CONNECT";
 $marketer_id = $_SESSION['marketer_id'];

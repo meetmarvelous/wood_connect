@@ -19,9 +19,16 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <a href="index.php" class="list-group-item list-group-item-action <?php echo $current_page === 'index.php' ? 'active' : ''; ?>">
                 <i class="fas fa-tachometer-alt me-2"></i>Dashboard
             </a>
+            <?php if ($_SESSION['marketer_verified']): ?>
             <a href="inventory.php" class="list-group-item list-group-item-action <?php echo $current_page === 'inventory.php' ? 'active' : ''; ?>">
                 <i class="fas fa-boxes me-2"></i>Inventory Management
             </a>
+            <?php else: ?>
+            <a href="#" class="list-group-item list-group-item-action disabled text-muted" title="Verification required to manage inventory">
+                <i class="fas fa-lock me-2"></i>Inventory Management
+                <span class="badge bg-secondary float-end">Locked</span>
+            </a>
+            <?php endif; ?>
             <a href="inquiries.php" class="list-group-item list-group-item-action <?php echo $current_page === 'inquiries.php' ? 'active' : ''; ?>">
                 <i class="fas fa-envelope me-2"></i>Customer Inquiries
                 <?php

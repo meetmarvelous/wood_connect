@@ -118,6 +118,21 @@ try {
             UNIQUE KEY `stat_date` (`stat_date`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci",
 
+        "contact_messages" => "CREATE TABLE IF NOT EXISTS `contact_messages` (
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `name` varchar(255) NOT NULL,
+            `email` varchar(255) NOT NULL,
+            `subject` varchar(100) NOT NULL,
+            `message` text NOT NULL,
+            `status` enum('unread','read','replied') DEFAULT 'unread',
+            `admin_notes` text DEFAULT NULL,
+            `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+            `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+            PRIMARY KEY (`id`),
+            KEY `idx_status` (`status`),
+            KEY `idx_created_at` (`created_at`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci",
+
         "inquiries" => "CREATE TABLE IF NOT EXISTS `inquiries` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `buyer_name` varchar(255) NOT NULL,

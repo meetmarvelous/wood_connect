@@ -247,6 +247,23 @@ class Auth
     }
   }
 
+  // Require verified marketer role (for inventory management)
+  public function requireVerifiedMarketer()
+  {
+    $this->requireMarketer();
+    if (!isset($_SESSION['marketer_verified']) || !$_SESSION['marketer_verified']) {
+      // Redirect to a pending verification page or dashboard with message
+      header('Location: ' . url('dashboard/marketer/?verification_pending=1'));
+      exit;
+    }
+  }
+
+  // Check if marketer is verified
+  public function isMarketerVerified()
+  {
+    return $this->isMarketer() && isset($_SESSION['marketer_verified']) && $_SESSION['marketer_verified'];
+  }
+
   // Require admin role
   public function requireAdmin()
   {

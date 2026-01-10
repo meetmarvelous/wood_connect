@@ -11,8 +11,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verifyCSRFToken($_POST['csrf_token'
     $subject = sanitizeInput($_POST['subject']);
     $message = sanitizeInput($_POST['message']);
     
-    // In a real application, you would send an email here
-    $success_message = "Thank you for your message! We'll get back to you soon.";
+    try {
+        // Save to database
+        $stmt = $pdo->prepare("INSERT INTO contact_messages (name, email, subject, message, status) VALUES (?, ?, ?, ?, 'unread')");
+        $stmt->execute([$name, $email, $subject, $message]);
+        $success_message = "Thank you for your message! We'll get back to you soon.";
+    } catch (PDOException $e) {
+        $error_message = "Sorry, there was an error sending your message. Please try again.";
+    }
 }
 ?>
     <?php include 'includes/header.php'; ?>
