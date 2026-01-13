@@ -571,9 +571,9 @@ try {
         echo "</div>";
         
         echo "<div class='mt-3'>";
-        echo "<a href='/timber-connect/' class='btn btn-success me-2'>Go to Homepage</a>";
-        echo "<a href='/timber-connect/marketplace/' class='btn btn-outline-success me-2'>Browse Marketplace</a>";
-        echo "<a href='/timber-connect/login.php' class='btn btn-outline-primary'>Admin Login</a>";
+        echo "<a href='/Woodconnect/' class='btn btn-success me-2'>Go to Homepage</a>";
+        echo "<a href='/Woodconnect/marketplace/' class='btn btn-outline-success me-2'>Browse Marketplace</a>";
+        echo "<a href='/Woodconnect/login.php' class='btn btn-outline-primary'>Admin Login</a>";
         echo "</div>";
         
 

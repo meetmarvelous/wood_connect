@@ -2,7 +2,7 @@
 require_once 'includes/config.php';
 
 if ($auth->isLoggedIn()) {
-  header('Location: /timber-connect/dashboard/');
+  header('Location: ' . url('dashboard/'));
   exit;
 }
 
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verifyCSRFToken($_POST['csrf_token'
 
   try {
     if ($auth->loginAdmin($username, $password)) {
-      header('Location: /timber-connect/dashboard/');
+      header('Location: ' . url('dashboard/'));
       exit;
     } else {
       $error_message = "Invalid username or password for admin account.";
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verifyCSRFToken($_POST['csrf_token'
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Custom CSS -->
-  <link href="/timber-connect/assets/css/style.css" rel="stylesheet">
+  <link href="<?php echo asset('css/style.css'); ?>" rel="stylesheet">
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verifyCSRFToken($_POST['csrf_token'
 
             <div class="text-center mt-4">
               <p class="mb-2">
-                <a href="/timber-connect/forgot-password.php" class="text-success text-decoration-none">Forgot your password?</a>
+                <a href="<?php echo url('forgot-password.php'); ?>" class="text-success text-decoration-none">Forgot your password?</a>
               </p>
             </div>
           </div>

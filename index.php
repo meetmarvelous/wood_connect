@@ -66,7 +66,7 @@ try {
                 </div>
                 <div class="col-lg-6">
                     <div class="hero-image">
-                        <img src="/timber-connect/assets/images/hero-timber.jpg" alt="Quality Timber" class="img-fluid rounded-3 shadow">
+                        <img src="/assets/images/hero-timber.jpg" alt="Quality Timber" class="img-fluid rounded-3 shadow">
                     </div>
                 </div>
             </div>

@@ -15,8 +15,8 @@ $host = $_SERVER['HTTP_HOST'];
 $current_dir = dirname($_SERVER['SCRIPT_NAME']);
 
 // If we're in a subdirectory, extract just the project root path
-if (strpos($current_dir, '/timber-connect') !== false) {
-    $base_path = '/timber-connect';
+if (strpos($current_dir, '/Woodconnect') !== false) {
+    $base_path = '/Woodconnect';
 } else {
     // For domain deployment, use empty base path
     $base_path = '';

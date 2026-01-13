@@ -2,7 +2,7 @@
 require_once 'includes/config.php';
 
 if ($auth->isLoggedIn()) {
-    header('Location: /timber-connect/dashboard/');
+    header('Location: ' . url('dashboard/'));
     exit;
 }
 
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verifyCSRFToken($_POST['csrf_token'
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Custom CSS -->
-    <link href="/timber-connect/assets/css/style.css" rel="stylesheet">
+    <link href="<?php echo url('assets/css/style.css'); ?>" rel="stylesheet">
     
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -63,8 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verifyCSRFToken($_POST['csrf_token'
                                 <h5 class="alert-heading">Registration Successful!</h5>
                                 <?php echo $success_message; ?>
                                 <div class="mt-3">
-                                    <a href="/timber-connect/login.php" class="btn btn-success">Proceed to Login</a>
-                                    <a href="/timber-connect/" class="btn btn-outline-success">Return to Home</a>
+                                    <a href="<?php echo url('login.php'); ?>" class="btn btn-success">Proceed to Login</a>
+                                    <a href="<?php echo url(''); ?>" class="btn btn-outline-success">Return to Home</a>
                                 </div>
                             </div>
                         <?php else: ?>
@@ -178,7 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verifyCSRFToken($_POST['csrf_token'
                                 <div class="form-check mb-4">
                                     <input class="form-check-input" type="checkbox" id="agree_terms" name="agree_terms" required>
                                     <label class="form-check-label" for="agree_terms">
-                                        I agree to the <a href="/timber-connect/terms.php" target="_blank" class="text-success">Terms and Conditions</a> and <a href="/timber-connect/privacy.php" target="_blank" class="text-success">Privacy Policy</a>
+                                        I agree to the <a href="<?php echo url('terms.php'); ?>" target="_blank" class="text-success">Terms and Conditions</a> and <a href="<?php echo url('privacy.php'); ?>" target="_blank" class="text-success">Privacy Policy</a>
                                     </label>
                                 </div>
 
@@ -188,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verifyCSRFToken($_POST['csrf_token'
                             </form>
 
                             <div class="text-center mt-4">
-                                <p class="mb-0">Already have an account? <a href="/timber-connect/login.php" class="text-success fw-semibold">Login here</a></p>
+                                <p class="mb-0">Already have an account? <a href="<?php echo url('login.php'); ?>" class="text-success fw-semibold">Login here</a></p>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -210,7 +210,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verifyCSRFToken($_POST['csrf_token'
             lgaSelect.innerHTML = '<option value="">Select LGA</option>';
             
             if (state) {
-                fetch(`/timber-connect/api/lgas.php?state=${encodeURIComponent(state)}`)
+                fetch(`<?php echo url('api/lgas.php'); ?>?state=${encodeURIComponent(state)}`)
                     .then(response => response.json())
                     .then(lgas => {
                         lgas.forEach(lga => {
